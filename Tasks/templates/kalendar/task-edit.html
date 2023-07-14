@@ -10,12 +10,14 @@
 {% block body %}
 <h1>My tasks</h1>
 {%if request.user.is_authenticated %}
-<h2>{% if id %} Edit {% else %} New {% endif %} Post</h2>
-<form method="post" novalidate>
-	{% csrf_token %}
-	{{ form.as_p }}
-	<input type="submit" value="Save" />
-</form>
+<h2>{% if id %} Редактировать {% else %} Создать {% endif %} задачу</h2>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {{ form.tag }}<br>
+      {{ form.to_date }}<br>
+      {{ form.text }}<br>
+      <input type="submit" value="Сохранить" />
+    </form>
 
 {%endif%}
 {% endblock %}

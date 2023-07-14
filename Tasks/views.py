@@ -61,7 +61,8 @@ def sign_up(request):
         else:
             return render(request, 'kalendar/register.html', {'form': form})
         
-        
+#-------------------------------------------------  
+
 #-----------------------------------------------
 from django.shortcuts import get_object_or_404
 def edit_task(request, id):
@@ -71,16 +72,18 @@ def edit_task(request, id):
         return render(request,'kalendar/task-edit.html',context)
     
     elif request.method == 'POST':
-        task = Task(author=request.user)
-        form = TForm(data=request.POST, instance=task)
-        if (request.user.id==form.author):
-            if form.is_valid():
-                form.save()
-                messages.success(request, 'Пост изменен')
-                return redirect('tasks')
-            else:
-                messages.error(request, 'Пожалуйста, исправьте ошибку в форме')
-                return render(request,'kalendar/task-edit.html',{'form':form})
+        form = TForm(request.POST, instance=post)
+        
+        if form.is_valid():
+            form.instance.author = request.user
+            form.save()
+
+            messages.success(request, 'Пост изменен.')
+            return redirect('tasks')
+        else:
+            messages.error(request, 'Пожалуйста, исправьте ошибку в форме')
+            return render(request,'kalendar/task-edit.html',{'form':form})
+        
         
 def tasks(request):
     if request.method == 'GET':

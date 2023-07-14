@@ -1,0 +1,12 @@
+form{
+    background-color: red;
+    padding: 25px;
+    border-radius: 15px;
+    border-color: red;
+}
+form>p{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20%;
+    margin-left: 20%;
+}

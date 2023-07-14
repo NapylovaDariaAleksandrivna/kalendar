@@ -1,0 +1,58 @@
+{% extends 'kalendar/menu.html'%}
+
+{% block CSS %}{% endblock %}
+{% block title %}
+Планер
+{% endblock %}
+
+
+
+{% block body %}
+{%if request.user.is_authenticated %}
+<div style="    display: flex; justify-content: space-between;">
+  <div>
+    
+    <h2>{% if id %} Редактировать {% else %} Создать {% endif %} задачу</h2>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {{ form.tag }}<br>
+      {{ form.to_date }}<br>
+      {{ form.text }}<br>
+      <input type="submit" value="Создать" />
+    </form>
+  </div>
+  <div style="text-align: right;">
+    <h1>Мои задачи</h1>
+
+      {% for task in tasks %}
+        <p>-------------------</p>
+        <h2>{{ task.tag }}</h2>
+        <small>Сделать до {{ task.to_date | date:"d M Y" }}</small>
+        <p>{{ task.text }}
+        </p> 
+        <a href="{% url 'task_edit' task.id %}">Редактировать </a>
+        <form method="POST">
+            <a href="{% url 'tasks' task.id %}">Удалить</a>
+        </form>
+
+        {% endfor %}
+        {% if messages %}
+        <dialog open="open" id="closeMe" style="margin: 0px;background: rgb(15, 58, 100);z-index: 2;position: fixed;top: 90%;
+        left: 1%;padding: 11px;border-radius: 15px;text-align: center;">
+          <form method="dialog">
+            <button style="margin: 0px;background: rgb(15, 58, 100);z-index: 2;position: fixed;top: 90%;
+            left: 1%;padding: 11px;border-radius: 15px;text-align: center;">
+                {% for message in messages %}
+                  <h6 style="margin: 0px; color: white;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>#{{ message }}</h6>
+                  <p style="margin: 0px; color: white;text-align: center;font-size: 10px;">(Нажми, чтоб закрыть)</p>
+                {% endfor %}
+            </button>
+          </form>
+        </dialog>
+        {% endif %}
+  </div>
+</div>
+{%endif%}
+{% endblock %}
+
+

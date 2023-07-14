@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href="{% static "css/standart.css" %}">
+    <link rel = "stylesheet" href="{% block CSS %}{% endblock %}">
+    
+    <title>{% block title %}{% endblock %} </title>
+    <div class="head">
+        <ul class="menu-main">
+            {% block cur %}
+            <li><a href="{% url 'home' %}">Главная</a></li>
+            <li><a href="{% url 'tasks' %}">Мои задачи</a></li>
+            <li><a href="{% url 'contact' %}">Инфо о разрабе</a></li>
+            
+            {% endblock %}
+        </ul>
+        
+    </div>
+</head>
+
+<body><div class="body">
+    <br>
+    {% block body %}{% endblock %}
+    </div>
+    <div style="  
+        margin: 0px;
+        background: rgb(15, 58, 100);
+        z-index: 2;
+        position: fixed;
+        top: 90%;
+        left: 93%;
+        padding: 11px;
+        border-radius: 15px;  
+        text-align: center;  
+    ">
+        {%if request.user.is_authenticated %}
+            <a style="text-decoration:none;
+            color:white;" href="{% url 'logout' %}">Logout</a>
+        {%else%}
+            <a style="text-decoration:none;
+            color:white;" href="{% url 'login' %}">Login</a>
+            <a style="text-decoration:none;
+            color:white;" href="{% url 'register' %}">Register</a>
+        {%endif%}
+    </div>
+    
+    
+</body>
+<footer>
+    
+</footer>
+</html>

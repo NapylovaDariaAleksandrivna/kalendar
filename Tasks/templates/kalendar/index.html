@@ -1,0 +1,23 @@
+{% extends 'kalendar/menu.html'%}
+
+{% block CSS %}{% endblock %}
+{% block title %}
+Главная
+{% endblock %}
+{% block number%}1{%endblock%}
+
+
+{% block body %}
+<!--  Если не зареган, то не видно!   -->
+{%if request.user.is_authenticated %}
+  		<span>Hi {{ request.user.username | title }}</span>
+{%endif%}
+{%if request.user.is_authenticated %}
+  	
+
+
+{%endif%}
+<!--     -->
+{% endblock %}
+
+

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;200;300;400;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Montserrat+Alternates:wght@100;200;300;400;600;700&display=swap');
+.small_text{
+    font-family: 'Montserrat';
+    font-size: 16px;
+    text-align: center;
+}
+
+
+
+
+
+h6{
+    font-family: 'Montserrat';
+    font-size: 18px;
+}
+p{
+    font-family: 'Montserrat';
+    font-size: 24px;
+}
+h1, h2, h3, h4, h5, a{
+    font-family:  'Comfortaa';
+}

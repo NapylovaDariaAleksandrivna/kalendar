@@ -1,3 +1,4 @@
+from typing import Any
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -12,5 +13,5 @@ class Task(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     class Meta:
         db_table = 'tasks'
-    class Meta:
         ordering = ['to_date']
+        

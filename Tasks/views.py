@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import  Task
 from .forms import TForm
-from django.contrib import messages
 
 
 # Create your views here.
@@ -67,30 +66,34 @@ def sign_up(request):
 from django.shortcuts import get_object_or_404
 def edit_task(request, id):
     post = get_object_or_404(Task, id=id)
-
     if request.method == 'GET':
         context = {'form': TForm(instance=post), 'id': id}
         return render(request,'kalendar/task-edit.html',context)
     
     elif request.method == 'POST':
-        form = TForm(request.POST, instance=post)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Пост изменен')
-            return redirect('tasks')
-        else:
-            messages.error(request, 'Пожалуйста, исправьте ошибку в форме')
-            return render(request,'kalendar/task-edit.html',{'form':form})
+        task = Task(author=request.user)
+        form = TForm(data=request.POST, instance=task)
+        if (request.user.id==form.author):
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Пост изменен')
+                return redirect('tasks')
+            else:
+                messages.error(request, 'Пожалуйста, исправьте ошибку в форме')
+                return render(request,'kalendar/task-edit.html',{'form':form})
         
 def tasks(request):
     if request.method == 'GET':
-        tasks = Task.objects.all()
+        tasks = Task.objects.filter(author=request.user)
+
         context = {'tasks': tasks}
         context = {'tasks': tasks, 'form': TForm()}
         return render(request, 'kalendar/tasks.html', context)
     if request.method == 'POST':
-        form = TForm(request.POST)
+        task = Task(author=request.user)
+        form = TForm(data=request.POST, instance=task)
         if form.is_valid():
+            form.instance.author = request.user
             form.save()
             messages.success(request, 'Задача поставлена')
             return redirect('tasks')
@@ -100,7 +103,6 @@ def tasks(request):
 
 def delete_post(request, id):
     task = get_object_or_404(Task, pk=id)
-    context = {'task': task}    
     task.delete()
     messages.success(request,  'Пост удален')
     return redirect('tasks')

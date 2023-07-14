@@ -23,19 +23,25 @@
   </div>
   <div style="text-align: right;">
     <h1>Мои задачи</h1>
-
-      {% for task in tasks %}
+      {%if tasks%}
+        {% for task in tasks %}
+          {% if True %}
+            <p>-------------------</p>
+            <h2>{{ task.tag }}</h2>
+            <small>Сделать до {{ task.to_date | date:"d M Y" }}</small>
+            <p>{{ task.text }}<br>
+              автор {{task.author}}
+            </p> 
+            <a href="{% url 'task_edit' task.id %}">Редактировать </a>
+            <form method="POST">
+                <a href="{% url 'tasks' task.id %}">Удалить</a>
+            </form>
+            {% endif %}
+          {% endfor %}
+        {%else%}
         <p>-------------------</p>
-        <h2>{{ task.tag }}</h2>
-        <small>Сделать до {{ task.to_date | date:"d M Y" }}</small>
-        <p>{{ task.text }}
-        </p> 
-        <a href="{% url 'task_edit' task.id %}">Редактировать </a>
-        <form method="POST">
-            <a href="{% url 'tasks' task.id %}">Удалить</a>
-        </form>
-
-        {% endfor %}
+        <h2>Задач нет</h2>
+        {% endif %}
         {% if messages %}
         <dialog open="open" id="closeMe" style="margin: 0px;background: rgb(15, 58, 100);z-index: 2;position: fixed;top: 90%;
         left: 1%;padding: 11px;border-radius: 15px;text-align: center;">

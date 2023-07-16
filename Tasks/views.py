@@ -23,7 +23,7 @@ def sign_in(request):
             user = authenticate(request,username=username,password=password)
             if user:
                 login(request, user)
-                messages.success(request,f'Hi {username.title()}, welcome back!')
+                messages.success(request,f'С возвращением {username.title()}!')
                 return redirect('tasks')
         messages.error(request,'Ошибка пароля')
         return render(request,'kalendar/login.html',{'form': form})
@@ -31,12 +31,13 @@ def sign_in(request):
 
 def sign_out(request):
     logout(request)
-    messages.success(request,'Вы вышли')
     return redirect('login')        
  
 from .forms import RegisterForm
 def sign_up(request):
     if request.method == 'GET':
+        if request.user.is_authenticated:
+            return redirect('tasks')
         user_form = RegisterForm()
         context = {
             'form': user_form
@@ -61,6 +62,28 @@ def sign_up(request):
             return render(request, 'kalendar/register.html', context)
         
 #-----------------------------------------------
+        
+def tasks(request):
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            tasks = Task.objects.filter(author=request.user)
+            context = {'tasks': tasks, 'form': TForm()}
+            return render(request, 'kalendar/tasks.html', context)
+        else:
+            return redirect('login')
+    if request.method == 'POST':
+        form = TForm(request.POST, request.FILES)
+        if form.is_valid():
+            
+            form.instance.author = request.user
+            form.save()
+            messages.success(request, 'Задача поставлена')
+            return redirect('tasks')
+        else:
+            messages.success(request, 'Где-то проблема, поищи ошибку')
+            return redirect('tasks')
+
+
 from django.shortcuts import get_object_or_404
 import os
 def edit_task(request, id):
@@ -80,40 +103,8 @@ def edit_task(request, id):
         else:
                 messages.error(request, 'Пожалуйста, исправьте ошибку в форме')
                 return render(request,'kalendar/task-edit.html',{'form':form})
-        # form = TForm(request.POST, instance=post)
-        # if form.is_valid():
-        #     form.img=request.FILES
-        #     
-        #     form.save()
 
-        #     messages.success(request, 'Пост изменен')
-        #     return redirect('tasks')
-        # else:
-        #     messages.error(request, 'Пожалуйста, исправьте ошибку в форме')
-        #     return render(request,'kalendar/task-edit.html',{'form':form})
-
-        
-def tasks(request):
-    if request.method == 'GET':
-        if request.user.is_authenticated:
-            tasks = Task.objects.filter(author=request.user)
-            context = {'tasks': tasks, 'form': TForm()}
-            return render(request, 'kalendar/tasks.html', context)
-        else:
-            return render(request, 'kalendar/tasks.html')
-    if request.method == 'POST':
-        form = TForm(request.POST, request.FILES)
-        if form.is_valid():
-            
-            form.instance.author = request.user
-            form.save()
-            messages.success(request, 'Задача поставлена')
-            return redirect('tasks')
-        else:
-            messages.success(request, 'Где-то проблема, поищи ошибку')
-            return redirect('tasks')
-
-def delete_post(request, id):
+def delete_task(request, id):
     task = get_object_or_404(Task, pk=id)
     task.delete()
     messages.success(request,  'Пост удален')

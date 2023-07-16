@@ -10,12 +10,9 @@
     <title>{% block title %}{% endblock %} </title>
     <div class="head">
         <ul class="menu-main">
-            {% block cur %}
-            <li><a href="{% url 'tasks' %}">Главная</a></li>
             <li><a href="{% url 'tasks' %}">Мои задачи</a></li>
             <li><a href="{% url 'contact' %}">Инфо о разрабе</a></li>
             
-            {% endblock %}
         </ul>
         
     </div>

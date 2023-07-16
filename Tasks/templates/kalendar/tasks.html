@@ -12,14 +12,14 @@
 <div style="    display: flex; justify-content: space-between;">
   <div>
     
-    <h2>{% if id %} Редактировать {% else %} Создать {% endif %} задачу</h2>
+    <h2> Создать задачу</h2>
     <form method="post" novalidate enctype="multipart/form-data">
       {% csrf_token %}
       
-      <p>{{ form.tag.label_tag }} {{ form.tag }}<br>
-        {{ form.to_date.label_tag }} {{ form.to_date }}<br>
-        {{ form.text.label_tag }} {{ form.text }}<br>
-        {{ form.img.label_tag }} {{form.img}}<br></p>
+      <p style="width: 50%;">Задача{{ form.tag }}<br>
+        Закончить к {{ form.to_date }}<br>
+        Дополнительное описание {{ form.text }}<br>
+        Добавить фото {{form.img}}<br></p>
       <input type="submit" value="Создать" />
     </form>
   </div>
@@ -34,8 +34,7 @@
             <img style="width: 100px; height: 100px;"   src="{{task.img.url}}" class="img"  accept=".jpg,.jpeg,.png"/>
             {% endif %}
             <small>Сделать до {{ task.to_date | date:"d M Y" }}</small>
-            <p>{{ task.text }}<br>
-            </p> 
+            <p>{{ task.text }}<br> </p> 
             <a href="{% url 'task_edit' task.id %}">Редактировать </a>
             <form method="POST">
                 <a href="{% url 'tasks' task.id %}">Удалить</a>

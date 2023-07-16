@@ -17,24 +17,29 @@
 	    {% if user.profile %}
 			<img src="{{user.profile.avatar.url}}" alt="{{ user.username }}" class="avatar"  accept=".jpg,.jpeg,.png"/>
 	    {% endif %}
-	    
-	    <h2 class="text-center">{{ user.username | title }}</h2>
-	    <p class="text-center"><a href="mailto:{{user.email}}">{{user.email}}</a></p>
-   	    <hr>
-		
-            <label for="email">Почта:</label>
-            <input type="email" id="email" name="email" value="{{user.email}}" />
-			
-		
-		<label for="avatar">Аватар:</label>
+	    		
+		<label for="avatar">Avatar:</label>
 		<input type="file" name="avatar" id="avatar">	
 		
-	    <button type="submit" class="btn btn-primary full-width">Обновить профиль</button>
+	    <button type="submit" class="btn btn-primary full-width">Обновить</button>
 	
 	</form>
 </div>
 
-
+{% if messages %}
+        <dialog open="open" id="closeMe" style="margin: 0px;background: rgb(15, 58, 100);z-index: 2;position: fixed;top: 90%;
+        left: 1%;padding: 11px;border-radius: 15px;text-align: center;">
+          <form method="dialog">
+            <button style="margin: 0px;background: rgb(15, 58, 100);z-index: 2;position: fixed;top: 90%;
+            left: 1%;padding: 11px;border-radius: 15px;text-align: center;">
+                {% for message in messages %}
+                  <h6 style="margin: 0px; color: white;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>#{{ message }}</h6>
+                  <p style="margin: 0px; color: white;text-align: center;font-size: 10px;">(Нажми, чтоб закрыть)</p>
+                {% endfor %}
+            </button>
+          </form>
+        </dialog>
+        {% endif %}
 {%endif%}
 <!--     -->
 {% endblock %}

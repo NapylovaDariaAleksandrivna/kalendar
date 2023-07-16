@@ -1,5 +1,6 @@
 
 from django import forms
+from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
@@ -16,5 +17,4 @@ from .models import Task
 class TForm(ModelForm):
     class Meta:
         model = Task
-        fields = ['tag','text', 'to_date', 'author']
-
+        fields = ['tag','text', 'to_date', 'author','img']

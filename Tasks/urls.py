@@ -10,10 +10,9 @@ from django.urls import path
 from . import views
 urlpatterns = [
     
-    path('', views.index, name="home"),
+    path('', views.tasks, name="tasks"),
     path('about_developer', views.about, name="contact"),
 
-    path('tasks', views.tasks, name="tasks"),    
     path('task_edit/<str:id>/', views.edit_task, name='task_edit'),
     path('tasks/<str:id>/', views.delete_post, name='tasks'),
 
@@ -26,3 +25,4 @@ urlpatterns = [
     path('password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='kalendar/password_reset_confirm.html'),name='password_reset_confirm'),
     path('password-reset-complete/',PasswordResetCompleteView.as_view(template_name='kalendar/password_reset_complete.html'),name='password_reset_complete'),
 ]
+

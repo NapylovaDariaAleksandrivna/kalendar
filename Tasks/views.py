@@ -68,20 +68,29 @@ def edit_task(request, id):
     if request.method == 'GET':
         context = {'form': TForm(instance=post), 'id': id}
         return render(request,'kalendar/task-edit.html',context)
+    
     if request.method == 'POST':
-        form = TForm(request.POST, instance=post)
-        
+        old_image = Task.objects.get(id=id)
+        form = TForm(request.POST, request.FILES, instance=old_image)
+
         if form.is_valid():
-            if (len(request.FILES)):
-                form.img=request.FILES
             form.instance.author = request.user
             form.save()
-
-            messages.success(request, 'Пост изменен')
             return redirect('tasks')
         else:
-            messages.error(request, 'Пожалуйста, исправьте ошибку в форме')
-            return render(request,'kalendar/task-edit.html',{'form':form})
+                messages.error(request, 'Пожалуйста, исправьте ошибку в форме')
+                return render(request,'kalendar/task-edit.html',{'form':form})
+        # form = TForm(request.POST, instance=post)
+        # if form.is_valid():
+        #     form.img=request.FILES
+        #     
+        #     form.save()
+
+        #     messages.success(request, 'Пост изменен')
+        #     return redirect('tasks')
+        # else:
+        #     messages.error(request, 'Пожалуйста, исправьте ошибку в форме')
+        #     return render(request,'kalendar/task-edit.html',{'form':form})
 
         
 def tasks(request):

@@ -12,17 +12,18 @@
 {%if request.user.is_authenticated %}
 <div>
     
-  <h2>{% if id %} Редактировать {% else %} Создать {% endif %} задачу</h2>
-  <form method="post" novalidate enctype="multipart/form-data">
-    {% csrf_token %}
-    
-    <p>{{ form.tag.label_tag }} {{ form.tag }}<br>
-      {{ form.to_date.label_tag }} {{ form.to_date }}<br>
-      {{ form.text.label_tag }} {{ form.text }}<br>
-      <img style="width: 100px; height: 100px;"   src="{{task.img.url}}" class="img"  accept=".jpg,.jpeg,.png"/>
-      {{form.img}}<br></p>
-    <input type="submit" value="Создать" />
-  </form>
+    <h2>{% if id %} Редактировать {% else %} Создать {% endif %} задачу</h2>
+    <form method="post" novalidate enctype="multipart/form-data">
+      {% csrf_token %}
+        <p>{{ form.tag.label_tag }} {{ form.tag }}<br>
+            {{ form.to_date.label_tag }} {{ form.to_date }}<br>
+            {{ form.text.label_tag }} {{ form.text }}<br>
+            {%if task.img%}
+            <img style="width: 100px; height: 100px;"src="{{task.img.url}}" class="img" accept=".jpg,.jpeg,.png"/>
+            </p>{%endif%}
+            <p>{{form.img}}<br></p>
+        <input type="submit" value="Обновить" />
+    </form>
 </div>
 {%endif%}
 {% endblock %}

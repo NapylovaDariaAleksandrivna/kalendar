@@ -12,7 +12,7 @@ class Task(models.Model):
     to_date = models.DateField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     img = models.ImageField(
-        upload_to='image',
+        upload_to='',
         blank=True,
     )
     def __str__(self):

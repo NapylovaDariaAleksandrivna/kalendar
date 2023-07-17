@@ -6,45 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href="{% static "css/standart.css" %}">
     <link rel = "stylesheet" href="{% block CSS %}{% endblock %}">
-    
     <title>{% block title %}{% endblock %} </title>
-    <div class="head">
-        <ul class="menu-main">
-            <li><a href="{% url 'tasks' %}">Мои задачи</a></li>
-            <li><a href="{% url 'contact' %}">Инфо о разрабе</a></li>
-            
-        </ul>
-        
-    </div>
 </head>
 
-<body><div class="body">
+<body>
+    <div style="margin: 0px;width: 100%;">
+        {%if request.user.is_authenticated %}
+            <ul class="menu-main">
+                <li><a href="{% url 'tasks' %}">Мои задачи</a></li>
+                <li><a href="{% url 'contact' %}">Инфо о разрабе</a></li>
+                <li><a href="{% url 'logout' %}">Выйти</a></li>
+            </ul>
+        {%else%}
+            <ul class="menu-main">
+                <li><a href="{% url 'login' %}">Войти</a></li>
+                <li><a href="{% url 'register' %}">Регистрация</a></li>
+                <li><a href="{% url 'contact' %}">Инфо о разрабе</a></li>
+            </ul>
+        {%endif%}
+        <br>
+    </div>
+<div class="body">
     <br>
     {% block body %}{% endblock %}
-    </div>
-    <div style="  
-        margin: 0px;
-        background: rgb(15, 58, 100);
-        z-index: 2;
-        position: fixed;
-        top: 90%;
-        left: 93%;
-        padding: 11px;
-        border-radius: 15px;  
-        text-align: center;  
-    ">
-        {%if request.user.is_authenticated %}
-            <a style="text-decoration:none;
-            color:white;" href="{% url 'logout' %}">Выйти</a>
-        {%else%}
-            <a style="text-decoration:none;
-            color:white;" href="{% url 'login' %}">Войти</a>
-            <a style="text-decoration:none;
-            color:white;" href="{% url 'register' %}">Регистрация</a>
-        {%endif%}
-    </div>
-    
-    
+</div>
 </body>
 <footer>
     

@@ -1,0 +1,31 @@
+.box{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 55px;
+    margin-left: 55px;
+}
+@media(max-width:680px) {
+    .box {display: block;}
+    .box>p{
+        font-size: 10px;
+    }
+  }
+p>input, a>input{
+    width:200px;
+}
+.text_form{
+    font-family: 'Montserrat';
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.text_form>input{
+    border: none;
+    border-bottom: 2px solid rgba(0,0,0, 0.12);
+}
+.text_form>input:focus {
+    border: none;
+    border-color: #bdbdbd;
+    outline: 0;
+  }

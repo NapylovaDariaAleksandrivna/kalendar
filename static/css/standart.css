@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;200;300;400;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Montserrat+Alternates:wght@100;200;300;400;600;700&display=swap');
 html{
-    margin: -1%;
-    
+  margin: -1%;
+  
 }
 h6{
   font-family: 'Montserrat';
@@ -17,8 +17,8 @@ h1, h2, h3, h4, h5, a{
   font-family:  'Comfortaa';
 }
 .body{
-    margin-right: 85px;
-    margin-left: 85px;
+  margin-right: 85px;
+  margin-left: 85px;
 }
 .menu-main {
   list-style: none;
@@ -29,17 +29,6 @@ h1, h2, h3, h4, h5, a{
   position: relative;
   background: rgb(15, 58, 100);
 
-}
-.menu-main:after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 20px;
-  left: 0;
-  bottom: -20px;
-  background: radial-gradient(white 0%, white 70%, rgba(255,255,255,0) 70%, rgba(255,255,255,0) 100%) 0 -10px;
-  background-size: 20px 20px;
-  background-repeat: repeat-x;
 }
 .menu-main li {display: inline-block;}
 .menu-main a {
@@ -52,48 +41,32 @@ h1, h2, h3, h4, h5, a{
   transition: .3s linear;
   position: relative;
 }
-.menu-main a:before,
-.menu-main a:after {
-  content: "";
-  position: absolute;
-  top: calc(50% - 3px);
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #F58262;
-  opacity: 0;
-  transition: .5s ease-in-out;
-}
-.menu-main a:before {left: 5px;}
-.menu-main a:after {right: 5px;}
-.menu-main a.current:before,
-.menu-main a.current:after,
-.menu-main a:hover:before, 
-.menu-main a:hover:after {opacity: 1;}
-.menu-main a.current,
+
 .menu-main a:hover {color: #F58262;}
+
 @media(max-width:680px) {
   .menu-main li {display: block;}
 }
 
-#cookie_notification{
-  display: none;
-  justify-content: space-between;
-  align-items: flex-end;
-  position: fixed;
-  bottom: 15px;
-  left: 50%;
-  width: 900px;
-  max-width: 90%;
-  transform: translateX(-50%);
-  padding: 25px;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.4);
-}
 
 form>p>input{
   border: none;
-  font-size: 17px;
+  font-size: 18px;
   border-bottom: 2px solid rgba(0,0,0, 0.12);
+}
+.button_reg{  
+  margin: 0px;
+  background: rgb(15, 58, 100);
+  z-index: 2;
+  position: fixed;
+  top: 90%;
+  left: 93%;
+  padding: 11px;
+  border-radius: 15px;  
+  text-align: center;
+}
+
+.button_input{
+  border-radius: 25%;
+  background-color: #F58262;
 }

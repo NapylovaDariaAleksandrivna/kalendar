@@ -1,23 +1,25 @@
 {% extends 'kalendar/menu.html' %}
+{% load static %}
+{% block CSS %}{% static "css/sign.css" %}{% endblock %}
+
 {% block title %}Авторизация{% endblock %}
 {% block body %}
-<div class="center">
-	<form method="post" class="card" novalidate>
-	{% csrf_token %}
-		<h2 class="text-center">Вход в аккаунт</h2>
-		{% for field in form %}
-			{{ field.label_tag }} 
-				{{ field }}
-				{% if field.errors %}
-					<small>{{ field.errors|striptags  }}</small> 
-				{% endif %}
-	  {% endfor %}
-	  
-	  <input type="submit" value="Войти" class="btn btn-primary full-width">
-	  <hr>
-	  <h6 class="text-center">Забыл пароль? <a href="{%url 'password-reset'%}">Восстановить</a></h6>
-	  <h6 class="text-center">Еще на зарагестрирован? <a href="{%url 'register'%}">Присоеденяйся</a></h6>
-  </form>
+<div>
+	<div class="box">
+		<form method="post" novalidate >
+		{% csrf_token %}
+		<div>
+			<h2>Вход в аккаунт</h2>
+			<p class="text_form" >Имя:  {{form.username}}</p>
+			<p class="text_form">Пароль:  {{form.password}}</p>
+			<input type="submit" value="Войти" class="button_input">
+		</div>
+		</form>
+		<div style="display: flex;flex-direction: column;justify-content: center;">
+			<h6 style="text-align: right;">Забыл пароль? <a href="{%url 'password-reset'%}">Восстановить</a></h6>
+			<h6 style="text-align: right;">Еще на зарагестрирован? <a href="{%url 'register'%}">Присоеденяйся</a></h6>
+		</div>
+	</div>
 </div>
 
 

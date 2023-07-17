@@ -1,8 +1,10 @@
 {% extends 'kalendar/menu.html'%}
+
 {% load static %}
 {% block CSS %}
 {% static "css/forms.css" %}
 {% endblock %}
+
 {% block title %}
 Регистрация
 {% endblock %}
@@ -16,10 +18,11 @@
 			{{ field.label_tag }} {{ field }}
 		</p>
 		{% endfor %}
-		<input type="submit" value="Зарегестрироватся" />
+		<input type="submit" value="Зарегестрироватся" style="background-color: white; padding:5px 15px 5px 15px; border-radius: 15px; 
+		border-color: white;border:none; font-family: 'Comfortaa';"/>
 	</form>
 
-	<p style="font-size: 18px;">Уже есть аккаунт? <a href="{%url 'login' %}">Войти</a></p>
+	<p style="font-size: 18px;">Уже есть аккаунт? <a href="{%url 'login' %}" style="text-decoration: none; color: #F58262;">Войти</a></p>
 	{% for field in form %}
 		{% if field.errors %}
 			{% for error in field.errors %}

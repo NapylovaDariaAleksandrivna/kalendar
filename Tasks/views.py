@@ -58,7 +58,6 @@ def sign_up(request):
             context = {
                 'form': user_form
             }
-            messages.success(request, 'Ошибка входа')
             return render(request, 'kalendar/register.html', context)
         
 #-----------------------------------------------

@@ -50,9 +50,8 @@ h1, h2, h3, h4, h5, a{
 
 
 form>p>input{
-  border: none;
+  border-color: grey;
   font-size: 18px;
-  border-bottom: 2px solid rgba(0,0,0, 0.12);
 }
 .button_reg{  
   margin: 0px;
@@ -69,4 +68,8 @@ form>p>input{
 .button_input{
   border-radius: 25%;
   background-color: #F58262;
+}
+input{
+  border-radius: 15px;
+  border-color: grey;
 }

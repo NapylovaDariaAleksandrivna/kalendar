@@ -1,8 +1,8 @@
 form{
-    background-color: red;
+    background-color: #F58262;
     padding: 25px;
     border-radius: 15px;
-    border-color: red;
+    border-color: #F58262;
 }
 form>p{
     display: flex;
@@ -11,3 +11,24 @@ form>p{
     margin-left: 20%;
     
 }
+label{
+    font-family:  'Comfortaa';
+    font-size: 24px;
+}
+input{
+    font-size: 'Montserrat';
+    font-size: 24px;
+}
+
+.box{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 55px;
+    margin-left: 55px;
+}
+@media(max-width:680px) {
+    .box {display: block;}
+    .box>p{
+        font-size: 10px;
+    }
+  }

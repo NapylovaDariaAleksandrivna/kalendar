@@ -10,14 +10,16 @@
 		{% csrf_token %}
 		<div>
 			<h2>Вход в аккаунт</h2>
-			<p class="text_form" >Имя:  {{form.username}}</p>
-			<p class="text_form">Пароль:  {{form.password}}</p>
-			<input type="submit" value="Войти" class="button_input">
+			<p class="text_form" >Имя:  {{form.username}} </p>
+			<p class="text_form">Пароль:  {{form.password}} </p>
+			<input type="submit" value="Войти" class="button_input"
+			style="background-color: #F58262; padding:5px 15px 5px 15px; border-radius: 15px; 
+			border-color: #F58262;border:none; font-family: 'Comfortaa';">
 		</div>
 		</form>
 		<div style="display: flex;flex-direction: column;justify-content: center;">
-			<h6 style="text-align: right;">Забыл пароль? <a href="{%url 'password-reset'%}">Восстановить</a></h6>
-			<h6 style="text-align: right;">Еще на зарагестрирован? <a href="{%url 'register'%}">Присоеденяйся</a></h6>
+			<h6 style="text-align: right;">Забыл пароль? <a href="{%url 'password-reset'%}"style="text-decoration: none; color: #F58262;">Восстановить</a></h6><br>
+			<h6 style="text-align: right;">Еще на зарагестрирован? <a href="{%url 'register'%}"style="text-decoration: none; color: #F58262;">Присоеденяйся</a></h6>
 		</div>
 	</div>
 </div>

@@ -1,6 +1,10 @@
 {% extends 'kalendar/menu.html'%}
 
-{% block CSS %}{% endblock %}
+{% load static %}
+{% block CSS %}
+{% static "css/task.css" %}
+{% endblock %}
+
 {% block title %}
 Изменение задачи
 {% endblock %}
@@ -11,11 +15,12 @@
     <h2>Редактировать задачу</h2>
     <form method="post" novalidate enctype="multipart/form-data">
       {% csrf_token %}
-        <p>Задача{{ form.tag }}<br>
+        <p>Задача {{ form.tag }}<br>
             Закончить к {{ form.to_date }}<br>
-            Дополнительное описание {{ form.text }}<br>
-            Изменить или добавить фото {{form.img}}<br></p>
-        <input type="submit" value="Обновить" />
+            Дополнительное описание <br>{{ form.text }}</p>
+            <p class="in">Изменить или добавить фото {{form.img}}<br></p>
+        <input type="submit" value="Обновить" style="background-color: #F58262; padding:5px 15px 5px 15px; border-radius: 15px; 
+        border-color: #F58262;border:none; font-family: 'Comfortaa';"/>
     </form>
 </div>
 {%endif%}

@@ -1,6 +1,10 @@
 {% extends 'kalendar/menu.html'%}
 
-{% block CSS %}{% endblock %}
+{% load static %}
+{% block CSS %}
+{% static "css/task.css" %}
+{% endblock %}
+
 {% block title %}
 Планер
 {% endblock %}
@@ -9,38 +13,38 @@
 
 {% block body %}
 {%if request.user.is_authenticated %}
-<div style="    display: flex; justify-content: space-between;">
+<div class="block_task">
   <div>
     
     <h2> Создать задачу</h2>
     <form method="post" novalidate enctype="multipart/form-data">
       {% csrf_token %}
-      
-      <p style="width: 50%;">Задача{{ form.tag }}<br>
-        Закончить к {{ form.to_date }}<br>
-        Дополнительное описание {{ form.text }}<br>
-        Добавить фото {{form.img}}<br></p>
-      <input type="submit" value="Создать" />
+      <div class="pole">
+        <p >Задача {{ form.tag }}</p>
+        <p>Закончить к {{ form.to_date }}</p>
+        <p>Дополнительное описание <br>{{ form.text }}</p>
+        <p class="in">Добавить фото  <br>{{form.img}}</p>
+      </div>
+      <input type="submit" value="Создать" style="background-color: #F58262; padding:5px 15px 5px 15px; border-radius: 15px; 
+			border-color: #F58262;border:none; font-family: 'Comfortaa';"/>
     </form>
   </div>
   <div style="text-align: right;">
     <h1>Мои задачи</h1>
       {%if tasks%}
+      <div class="task_blocks">
         {% for task in tasks %}
-          
-            <p>-------------------</p>
-            <h2>{{ task.tag }}</h2>
-            {% if task.img %}
-            <img style="width: 100px; height: 100px;"   src="{{task.img.url}}" class="img"  accept=".jpg,.jpeg,.png"/>
-            {% endif %}
+        <div class="task">
+            <div style="display: flex;text-align: center; justify-content: space-evenly;">{% if task.img %}<img style="width: 100px; height: 100px;"   src="{{task.img.url}}" class="img"  accept=".jpg,.jpeg,.png"/>{% endif %}<h2>{{ task.tag }}</h2></div>
             <small>Сделать до {{ task.to_date | date:"d M Y" }}</small>
             <p>{{ task.text }}<br> </p> 
             <a href="{% url 'task_edit' task.id %}">Редактировать </a>
             <form method="POST">
                 <a href="{% url 'tasks' task.id %}">Удалить</a>
             </form>
-            
+          </div>
           {% endfor %}
+        </div>
         {%else%}
         <p>-------------------</p>
         <h2>Задач нет</h2>

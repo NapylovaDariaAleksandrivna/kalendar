@@ -1,0 +1,45 @@
+textarea{
+    border-radius: 15px;
+    width: auto;
+    height: 55px;
+    border-color: grey;
+}
+.pole>p{
+    margin: 15px 0px 15px 0px;
+}
+.pole>.in>input{
+    border-radius: 0px;
+    
+}
+.in>input{
+    border-radius: 0px;
+    
+}
+.task{
+    background-color: #d0d0d0;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px;
+    width: 350px;
+    text-align: center;
+}
+.block_task{
+    display: flex; justify-content: space-between;
+}
+@media(max-width:680px){
+    .task_blocks{
+        display: block;
+    };
+     .block_task{
+        display: block;
+    }
+    
+}
+small{
+    font-family: 'Montserrat';
+  font-size: 12px;
+  margin: 2px;
+}
+.task_blocks{
+    display: grid; gap: 20px;grid-template-columns: auto auto;
+}

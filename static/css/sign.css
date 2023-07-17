@@ -11,7 +11,7 @@
     }
   }
 p>input, a>input{
-    width:200px;
+    width:175px;
 }
 .text_form{
     font-family: 'Montserrat';
@@ -21,11 +21,11 @@ p>input, a>input{
     justify-content: space-between;
 }
 .text_form>input{
-    border: none;
-    border-bottom: 2px solid rgba(0,0,0, 0.12);
+    border-color: grey;
+
 }
 .text_form>input:focus {
-    border: none;
+    border-color: grey;
     border-color: #bdbdbd;
     outline: 0;
   }
